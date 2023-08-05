@@ -1,40 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function About() {
-  const [myStyle, setMyStyle] = useState({
-    color: "black",
-    backgroundColor: "white",
-  });
-
-  const [btnText, setBtnText] = useState("Enable Dark Mode");
-
-  const toggleStyle = () => {
-    if (myStyle.color === "black") {
-      setMyStyle({
-        color: "white",
-        backgroundColor: "black",
-        border: "1px solid white",
-      });
-      setBtnText("Enable Light Mode");
-    } else {
-      setMyStyle({
-        color: "black",
-        backgroundColor: "white",
-      });
-      setBtnText("Enable Dark Mode");
-    }
+export default function About(props) {
+  const style = {
+    background: props.mode === "light" ? "white" : "#212529",
+    color: props.mode === "light" ? "black" : "white",
   };
-
   return (
-    <div className="container" style={myStyle}>
+    <div
+      className="container"
+      style={{ color: props.mode === "light" ? "black" : "white" }}
+    >
       <h1 className="my-3">About us</h1>
       <div className="accordion" id="accordionExample">
-        <div className="accordion-item" style={myStyle}>
+        <div className="accordion-item">
           <h2 className="accordion-header">
             <button
               className="accordion-button"
               type="button"
-              style={myStyle}
+              style={style}
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
               aria-expanded="true"
@@ -48,7 +31,7 @@ export default function About() {
             className="accordion-collapse collapse show"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body" style={myStyle}>
+            <div className="accordion-body" style={style}>
               <strong>This is the first item's accordion body.</strong> It is
               shown by default, until the collapse plugin adds the appropriate
               classNamees that we use to style each element. These classNamees
@@ -65,7 +48,7 @@ export default function About() {
             <button
               className="accordion-button collapsed"
               type="button"
-              style={myStyle}
+              style={style}
               data-bs-toggle="collapse"
               data-bs-target="#collapseTwo"
               aria-expanded="false"
@@ -79,7 +62,7 @@ export default function About() {
             className="accordion-collapse collapse"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body" style={myStyle}>
+            <div className="accordion-body" style={style}>
               <strong>This is the second item's accordion body.</strong> It is
               hidden by default, until the collapse plugin adds the appropriate
               classNamees that we use to style each element. These classNamees
@@ -96,7 +79,7 @@ export default function About() {
             <button
               className="accordion-button collapsed"
               type="button"
-              style={myStyle}
+              style={style}
               data-bs-toggle="collapse"
               data-bs-target="#collapseThree"
               aria-expanded="false"
@@ -110,7 +93,7 @@ export default function About() {
             className="accordion-collapse collapse"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body" style={myStyle}>
+            <div className="accordion-body" style={style}>
               <strong>This is the third item's accordion body.</strong> It is
               hidden by default, until the collapse plugin adds the appropriate
               classNamees that we use to style each element. These classNamees
@@ -122,11 +105,6 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="container">
-        <button className="btn btn-primary mx-2 my-3" onClick={toggleStyle}>
-          {btnText}
-        </button>
       </div>
     </div>
   );
